@@ -15,7 +15,7 @@ class AuthRouter {
 
         this.router.post('/create', jsonParser, this._createUser.bind(this));
 
-        this.router.put('/', jsonParser, this._changePassword.bind(this));
+        this.router.put('/:id', jsonParser, this._changePassword.bind(this));
     }
 
     _checkPassword(req, res) {
@@ -39,6 +39,11 @@ class AuthRouter {
             res.status(500).send(err);
         });
     }
-    _changePassword(req, res) {}
+    _changePassword(req, res) {
+        const id = req.params.id;
+        this.controller.changePassword(id, req.body)
+        .then(response => res.send(response))
+        .catch(err => res.status(500).send(err));
+    }
 }
 module.exports = AuthRouter;

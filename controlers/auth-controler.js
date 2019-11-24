@@ -19,6 +19,17 @@ class AuthControler {
             email,
         });
     }
-    changePassword() {}
+
+    changePassword(id, data) {
+        return this._getUser(id).then(user => this._updateUser(user, data));
+            
+    }
+    _updateUser(user, data) {
+
+        return this.db.put({...user, ...data});
+    }
+    _getUser(id) {
+        return this.db.get(id);
+    }
 }
 module.exports = AuthControler;
