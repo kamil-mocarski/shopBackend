@@ -9,7 +9,7 @@ class AppRouter {
     }
     routes() {
         this.router.use('/auth', new Authrouter().router);
-        this.router.use('/db', new DbRouter().router);
+        this.router.use('/products', new DbRouter().router);
     }
 }
 

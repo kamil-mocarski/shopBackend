@@ -32,12 +32,8 @@ class AuthRouter {
     _createUser(req, res) {
         const userData = req.body;
         this.controller.createUser(userData.login, userData.password, userData.email,)
-        .then((response) => {
-            res.send(response);
-        })
-        .catch((err) => {
-            res.status(500).send(err);
-        });
+        .then(response => res.send(response))
+        .catch(err => res.status(500).send(err));
     }
     _changePassword(req, res) {
         const id = req.params.id;
